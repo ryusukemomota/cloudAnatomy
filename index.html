@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解剖学フラッシュカード</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>解剖学フラッシュカード</h1>
+            <div class="controls">
+                <select id="category">
+                    <option value="all">すべて</option>
+                    <option value="bones">骨格</option>
+                    <option value="muscles">筋肉</option>
+                    <option value="nerves">神経</option>
+                </select>
+                <button id="shuffle">シャッフル</button>
+                <a href="quiz.html" class="link-btn">クイズへ</a>
+            </div>
+        </header>
+
+        <div class="stats">
+            <span id="current">1</span> / <span id="total">0</span>
+        </div>
+
+        <div class="card-container">
+            <button class="nav-arrow nav-left" id="prev" aria-label="前へ">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            
+            <div class="card" id="card">
+                <div class="card-front">
+                    <img id="card-image" src="" alt="解剖図">
+                    <p class="hint">クリックして名前を表示</p>
+                </div>
+                <div class="card-back">
+                    <h2 id="card-name">カード名</h2>
+                </div>
+            </div>
+            
+            <button class="nav-arrow nav-right" id="next" aria-label="次へ">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

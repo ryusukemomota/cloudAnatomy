@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解剖学クイズ</title>
+    <link rel="stylesheet" href="quiz-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>解剖学クイズ</h1>
+            <div class="controls">
+                <select id="category">
+                    <option value="all">すべて</option>
+                    <option value="bones">骨格</option>
+                    <option value="muscles">筋肉</option>
+                    <option value="nerves">神経</option>
+                </select>
+                <button id="start">クイズ開始</button>
+                <a href="index.html" class="link-btn">フラッシュカードへ</a>
+            </div>
+        </header>
+
+        <div class="quiz-container" id="quizContainer" style="display: none;">
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="label">問題:</span>
+                    <span id="questionNum">1</span> / <span id="totalQuestions">10</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">正解:</span>
+                    <span id="correctCount">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">不正解:</span>
+                    <span id="wrongCount">0</span>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="image-container">
+                    <img id="questionImage" src="" alt="解剖図">
+                </div>
+                <h2 class="question-text">この部位の名前は？</h2>
+            </div>
+
+            <div class="options" id="options">
+                <!-- 選択肢がここに動的に追加されます -->
+            </div>
+
+            <div class="feedback" id="feedback" style="display: none;">
+                <p id="feedbackText"></p>
+                <button id="nextQuestion">次の問題へ</button>
+            </div>
+        </div>
+
+        <div class="result-container" id="resultContainer" style="display: none;">
+            <h2>クイズ終了！</h2>
+            <div class="result-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="finalCorrect">0</div>
+                    <div class="stat-label">正解</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="finalWrong">0</div>
+                    <div class="stat-label">不正解</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="finalScore">0%</div>
+                    <div class="stat-label">正答率</div>
+                </div>
+            </div>
+            <div class="result-actions">
+                <button id="retry">もう一度</button>
+                <button id="changeCategory">カテゴリー変更</button>
+            </div>
+        </div>
+
+        <div class="start-screen" id="startScreen">
+            <div class="start-card">
+                <h2>クイズについて</h2>
+                <p>解剖図を見て、正しい名前を4つの選択肢から選んでください。</p>
+                <ul>
+                    <li>全10問のクイズです</li>
+                    <li>カテゴリーを選択できます</li>
+                    <li>正答率が表示されます</li>
+                </ul>
+                <p class="start-hint">上の「クイズ開始」ボタンを押してスタート！</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz-script.js"></script>
+</body>
+</html>
