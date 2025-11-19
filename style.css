@@ -66,6 +66,10 @@ button {
     font-weight: bold;
 }
 
+.link-btn.detail {
+    background: #9C27B0;
+}
+
 button:hover, .link-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);

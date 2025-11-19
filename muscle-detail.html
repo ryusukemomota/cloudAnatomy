@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋肉詳細学習</title>
+    <link rel="stylesheet" href="muscle-detail-style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>筋肉詳細学習</h1>
+            <div class="controls">
+                <select id="category">
+                    <option value="">カテゴリーを選択</option>
+                </select>
+                <button id="shuffle">シャッフル</button>
+                <a href="index.html" class="link-btn">フラッシュカードへ</a>
+                <a href="quiz.html" class="link-btn">クイズへ</a>
+            </div>
+        </header>
+
+        <div class="stats">
+            <span id="current">1</span> / <span id="total">0</span>
+        </div>
+
+        <div class="card-container">
+            <button class="nav-arrow nav-left" id="prev" aria-label="前へ">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            
+            <div class="card" id="card">
+                <div class="card-content">
+                    <div class="muscle-image">
+                        <img id="muscleImage" src="" alt="筋肉図">
+                    </div>
+                    <div class="muscle-info">
+                        <h2 id="muscleName">筋肉名</h2>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">起始 (Origin):</span>
+                                <span class="info-value" id="origin">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">停止 (Insertion):</span>
+                                <span class="info-value" id="insertion">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">神経支配 (Innervation):</span>
+                                <span class="info-value" id="innervation">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">血液供給 (Blood Supply):</span>
+                                <span class="info-value" id="bloodSupply">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="nav-arrow nav-right" id="next" aria-label="次へ">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+    </div>
+
+    <script src="muscle-detail-script.js"></script>
+</body>
+</html>
