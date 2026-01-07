@@ -151,6 +151,48 @@ button:active {
     color: white;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+
+.clickable-text {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.clickable-text:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+}
+
+.speech-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.speech-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.speech-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.speech-btn:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .nav-arrow {
@@ -218,6 +260,7 @@ button:active {
     
     .card-back h2 {
         font-size: 1.5rem;
+        margin-bottom: 15px;
     }
     
     .nav-arrow {
@@ -228,5 +271,15 @@ button:active {
     .nav-arrow svg {
         width: 30px;
         height: 30px;
+    }
+    
+    .speech-controls {
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .speech-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
     }
 }

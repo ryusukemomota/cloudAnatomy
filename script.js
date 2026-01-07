@@ -86,6 +86,65 @@ const categorySelect = document.getElementById('category');
 const shuffleBtn = document.getElementById('shuffle');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
+const speakJapaneseBtn = document.getElementById('speak-japanese');
+const speakEnglishBtn = document.getElementById('speak-english');
+
+// 音声合成の設定
+let speechSynthesis = window.speechSynthesis;
+let japaneseVoice = null;
+let englishVoice = null;
+
+// 音声の初期化
+function initVoices() {
+    const voices = speechSynthesis.getVoices();
+    
+    // 日本語音声を探す
+    japaneseVoice = voices.find(voice => voice.lang.startsWith('ja')) || 
+                   voices.find(voice => voice.name.includes('Japanese')) ||
+                   voices[0]; // フォールバック
+    
+    // 英語音声を探す
+    englishVoice = voices.find(voice => voice.lang.startsWith('en')) ||
+                  voices.find(voice => voice.name.includes('English')) ||
+                  voices[0]; // フォールバック
+}
+
+// 音声読み上げ関数
+function speakText(text, language = 'ja') {
+    // 現在の音声を停止
+    speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    if (language === 'ja') {
+        utterance.voice = japaneseVoice;
+        utterance.lang = 'ja-JP';
+    } else {
+        utterance.voice = englishVoice;
+        utterance.lang = 'en-US';
+    }
+    
+    utterance.rate = 0.8; // 少しゆっくり
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    
+    speechSynthesis.speak(utterance);
+}
+
+// テキストから日本語と英語を分離する関数
+function parseCardName(name) {
+    const match = name.match(/^(.+?)\s*\((.+?)\)$/);
+    if (match) {
+        return {
+            japanese: match[1].trim(),
+            english: match[2].trim()
+        };
+    }
+    return {
+        japanese: name,
+        english: name
+    };
+}
 
 // 初期化
 function init() {
@@ -148,6 +207,30 @@ card.addEventListener('click', () => {
     card.classList.toggle('flipped');
 });
 
+// カード名をクリックしたときの音声読み上げ
+cardName.addEventListener('click', (e) => {
+    e.stopPropagation(); // カードのフリップを防ぐ
+    const currentCard = currentCards[currentIndex];
+    const parsedName = parseCardName(currentCard.name);
+    speakText(parsedName.japanese, 'ja');
+});
+
+// 日本語読み上げボタン
+speakJapaneseBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // カードのフリップを防ぐ
+    const currentCard = currentCards[currentIndex];
+    const parsedName = parseCardName(currentCard.name);
+    speakText(parsedName.japanese, 'ja');
+});
+
+// 英語読み上げボタン
+speakEnglishBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // カードのフリップを防ぐ
+    const currentCard = currentCards[currentIndex];
+    const parsedName = parseCardName(currentCard.name);
+    speakText(parsedName.english, 'en');
+});
+
 categorySelect.addEventListener('change', updateCardList);
 
 shuffleBtn.addEventListener('click', shuffleCards);
@@ -179,4 +262,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 // 初期化実行
+// 音声の初期化（ページ読み込み後に実行）
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = initVoices;
+} else {
+    initVoices();
+}
+
 init();
